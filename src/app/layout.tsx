@@ -35,7 +35,16 @@ export default function RootLayout({
         className={`${spaceGrotesk.className} ${inter.variable} ${montserrat.variable} bg-default-blue text-light-white h-screen w-full antialiased`}
       >
         <ReactQueryProvider>{children}</ReactQueryProvider>
-        <Toaster />
+        <Toaster
+          position="bottom-center"
+          toastOptions={{
+            style: {
+              background: "#2776D2",
+              color: "white",
+              border: "none"
+            }
+          }}
+        />
       </body>
     </html>
   );
