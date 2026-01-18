@@ -6,6 +6,10 @@ const api = axios.create({
   baseURL: API_URL,
   headers: {
     "Content-Type": "application/json"
+  },
+  validateStatus: (status) => {
+    // Aceita 2xx, 304 (Not Modified)
+    return (status >= 200 && status < 300) || status === 304;
   }
 });
 
@@ -13,7 +17,6 @@ api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("authToken");
 
-    // Se o token existir, adiciona no header Authorization
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

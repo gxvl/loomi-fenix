@@ -3,9 +3,15 @@ import React from "react";
 interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
-export const Checkbox = ({ label, className = "", ...props }: CheckboxProps) => {
+export const Checkbox = ({
+  label,
+  className = "",
+  ...props
+}: CheckboxProps) => {
   return (
-    <label className={`flex items-center gap-3 cursor-pointer select-none group ${className}`}>
+    <label
+      className={`flex items-center gap-3 cursor-pointer select-none group ${className}`}
+    >
       <div className="relative flex items-center justify-center">
         <input
           type="checkbox"
@@ -17,7 +23,7 @@ export const Checkbox = ({ label, className = "", ...props }: CheckboxProps) => 
           "
           {...props}
         />
-        
+
         <svg
           className="absolute w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"
           xmlns="http://www.w3.org/2000/svg"

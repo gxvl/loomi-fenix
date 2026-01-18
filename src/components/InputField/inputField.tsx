@@ -8,8 +8,6 @@ import FormErrorLabel from "../FormErrorLabel/formErrorLabel";
 import Input from "../Input/input";
 import Label from "../Label/label";
 
-
-
 const InputField = <T extends FieldValues>({
   register,
   name,
@@ -17,7 +15,7 @@ const InputField = <T extends FieldValues>({
   // mask,
   formErrors,
   label,
-  placeholder, 
+  placeholder,
   required,
   labelMessage,
   suffix,
@@ -26,8 +24,6 @@ const InputField = <T extends FieldValues>({
 }: InputFieldProps<T>) => {
   const errorMessage = formErrors && name ? formErrors[name]?.message : null;
 
-
-  
   // const registrationProps = register ? register(name) : {};
 
   // if (mask) {
@@ -65,9 +61,7 @@ const InputField = <T extends FieldValues>({
       {label && (
         <Label>
           {
-            <span
-              className={`text-sm font-normal text-light-white`}
-            >
+            <span className={`text-sm font-normal text-light-white`}>
               {label}
             </span>
           }
@@ -84,7 +78,9 @@ const InputField = <T extends FieldValues>({
         onSuffixClick={onSuffixClick}
       />
       {labelMessage && (
-        <p className="font-inter text-light-white ml-2 text-xs">{labelMessage}</p>
+        <p className="font-inter text-light-white ml-2 text-xs">
+          {labelMessage}
+        </p>
       )}
       {errorMessage && (
         <FormErrorLabel>{errorMessage.toString()}</FormErrorLabel>

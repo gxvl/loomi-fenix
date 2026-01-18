@@ -1,26 +1,31 @@
 "use client";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import { KpisTrend } from "@/src/common/entities/dashboard";
 
-const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false
+});
 
-export const KPICard = () => {
+export const KPICard = ({ kpisTrend }: { kpisTrend: KpisTrend }) => {
   const [selectedKPI, setSelectedKPI] = useState("arpu");
-  
+
   const kpis = [
-    { id: "retencao", label: "Retenção" },
-    { id: "conversao", label: "Conversão" },
-    { id: "churn", label: "Churn" },
-    { id: "arpu", label: "ARPU" },
+    { id: "retencao", label: "Retenção", trend: kpisTrend.retentionTrend },
+    { id: "conversao", label: "Conversão", trend: kpisTrend.conversionTrend },
+    { id: "churn", label: "Churn", trend: kpisTrend.churnTrend },
+    { id: "arpu", label: "ARPU", trend: kpisTrend.arpuTrend }
   ];
+
+  const selectedKPIData = kpis.find((kpi) => kpi.id === selectedKPI);
 
   const chartOptions: ApexCharts.ApexOptions = {
     chart: {
       height: 350,
-      type: 'area',
-      background: 'transparent',
+      type: "area",
+      background: "transparent",
       toolbar: {
         show: false
       }
@@ -29,66 +34,54 @@ export const KPICard = () => {
       enabled: false
     },
     stroke: {
-      curve: 'smooth',
-      width: 2
+      curve: "smooth",
+      width: 1
     },
     xaxis: {
-      type: 'category',
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Ago",
-        "Set",
-        "Out",
-        "Nov",
-        "Dez"
-      ],
+      type: "category",
+      categories: kpisTrend.labels,
       labels: {
         style: {
-          colors: '#fff'
+          colors: "#fff"
         }
       }
     },
     yaxis: {
       labels: {
         style: {
-          colors: '#fff'
+          colors: "#fff"
         }
       }
     },
     tooltip: {
-      x: {
-        format: 'dd/MM/yy HH:mm'
-      },
-      theme: 'dark'
+      theme: "dark"
     },
     grid: {
-      borderColor: '#2D3447',
-      strokeDashArray: 4
+      borderColor: "#2D3447",
+      strokeDashArray: 0
     },
     legend: {
       labels: {
-        colors: '#fff'
+        colors: "#fff"
       }
     }
   };
 
-  const series = [
-    {
-      name: 'series1',
-      data: [31, 40, 28, 51, 42, 109, 100]
-    },
-  ];
+  const series = selectedKPIData
+    ? [
+        {
+          name: selectedKPIData.trend.name,
+          data: selectedKPIData.trend.data
+        }
+      ]
+    : [];
 
   return (
     <div className=" px-6 h-max pt-10 bg-card-blue flex flex-col gap-5 w-[60%] rounded-2xl">
       <div className="flex justify-between">
-        <h4 className="font-montserrat font-bold text-xl">Evolução dos KPI&apos;s</h4>
+        <h4 className="font-montserrat font-bold text-xl">
+          Evolução dos KPI&apos;s
+        </h4>
         <div className="bg-[#24293B] rounded-full p-3 flex gap-3 relative">
           {kpis.map((kpi) => (
             <Button
@@ -102,15 +95,15 @@ export const KPICard = () => {
           ))}
         </div>
       </div>
-      
+
       <div className="w-full ">
-        <ReactApexChart 
-          options={chartOptions} 
-          series={series} 
-          type="area" 
-          height={250} 
+        <ReactApexChart
+          options={chartOptions}
+          series={series}
+          type="area"
+          height={250}
         />
       </div>
     </div>
-  )
-}
+  );
+};
