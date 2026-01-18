@@ -64,9 +64,9 @@ export const ConversionCard = ({ kpisTrend }: { kpisTrend: KpisTrend }) => {
   ];
 
   return (
-    <div className="h-max border-[0.5px] border-border-gray px-6 pt-8 bg-card-blue flex flex-col gap-5 w-[40%] rounded-2xl">
+    <div className="border-border-gray bg-card-blue flex h-max w-[40%] flex-col gap-5 rounded-2xl border-[0.5px] px-6 pt-8">
       <div className="flex items-center justify-between">
-        <h4 className="font-montserrat font-bold text-xl">Taxa de conversão</h4>
+        <h4 className="font-montserrat text-xl font-bold">Taxa de conversão</h4>
         <ChevronRight size={26} color="white" className="cursor-pointer" />
       </div>
 

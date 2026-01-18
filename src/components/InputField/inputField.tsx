@@ -60,11 +60,7 @@ const InputField = <T extends FieldValues>({
     <div className="flex flex-col gap-1">
       {label && (
         <Label>
-          {
-            <span className={`text-sm font-normal text-light-white`}>
-              {label}
-            </span>
-          }
+          {<span className={`text-base font-medium text-white`}>{label}</span>}
         </Label>
       )}
       <Input

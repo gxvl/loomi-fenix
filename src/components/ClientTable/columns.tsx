@@ -18,7 +18,7 @@ export const columns: ColumnDef<Client>[] = [
     accessorKey: "secureType",
     header: "Tipo de Seguro",
     cell: ({ row }) => (
-      <span className="text-white font-semibold">
+      <span className="font-semibold text-white">
         {row.original.secureType}
       </span>
     )
@@ -27,7 +27,7 @@ export const columns: ColumnDef<Client>[] = [
     accessorKey: "monthValue",
     header: "Valor mensal",
     cell: ({ row }) => (
-      <span className="text-white font-semibold">
+      <span className="font-semibold text-white">
         R$ {row.original.monthValue.toFixed(2)}
       </span>
     )
@@ -45,7 +45,7 @@ export const columns: ColumnDef<Client>[] = [
 
       return (
         <span
-          className={`px-3 py-1 rounded-full font-montserrat text-xs font-medium ${statusColors[status] || "bg-gray-500/20 text-gray-400"}`}
+          className={`font-montserrat rounded-full px-3 py-1 text-xs font-medium ${statusColors[status] || "bg-gray-500/20 text-gray-400"}`}
         >
           {status}
         </span>
@@ -56,7 +56,7 @@ export const columns: ColumnDef<Client>[] = [
     accessorKey: "renewalDate",
     header: "Renovação",
     cell: ({ row }) => (
-      <span className="text-white font-semibold">
+      <span className="font-semibold text-white">
         {row.original.renewalDate}
       </span>
     )
@@ -65,7 +65,7 @@ export const columns: ColumnDef<Client>[] = [
     accessorKey: "location",
     header: "Região",
     cell: ({ row }) => (
-      <span className="text-white font-semibold">{row.original.location}</span>
+      <span className="font-semibold text-white">{row.original.location}</span>
     )
   }
 ];

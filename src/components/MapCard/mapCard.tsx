@@ -86,7 +86,6 @@ export const MapCard = () => {
   const uniquePlaces = useMemo(() => {
     if (!mapData?.data.locations) return [];
 
-    // Filtrar apenas localizações do Brasil antes de extrair as cidades
     const brazilianLocations = mapData.data.locations.filter((loc) =>
       isBrazilianAddress(loc.address)
     );
@@ -100,7 +99,6 @@ export const MapCard = () => {
   const uniqueCategories = useMemo(() => {
     if (!mapData?.data.locations) return [];
 
-    // Filtrar apenas localizações do Brasil antes de extrair as categorias
     const brazilianLocations = mapData.data.locations.filter((loc) =>
       isBrazilianAddress(loc.address)
     );
@@ -120,7 +118,6 @@ export const MapCard = () => {
     return mapData.data.locations.filter((location) => {
       const locationCity = extractCity(location.address);
 
-      // Filtrar apenas endereços do Brasil
       const isBrazil = isBrazilianAddress(location.address);
 
       const matchesPlace =
@@ -164,10 +161,8 @@ export const MapCard = () => {
             </SelectContent>
           </Select>
 
-          {/* Select de Categorias (CORRIGIDO) */}
           <Select value={typeFilter} onValueChange={setTypeFilter}>
             <SelectTrigger className="bg-default-blue font-inter w-45 rounded-full border-none">
-              {/* Forçamos o children do SelectValue para exibir o label traduzido */}
               <SelectValue
                 placeholder="Todos os tipos"
                 className="text-light-white"

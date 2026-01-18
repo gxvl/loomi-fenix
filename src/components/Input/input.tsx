@@ -1,7 +1,7 @@
 import { FieldValues } from "react-hook-form";
 
-import { InputProps } from "./types";
 import { cn } from "@/src/lib/utils";
+import { InputProps } from "./types";
 
 const Input = <T extends FieldValues>({
   register,
@@ -15,7 +15,7 @@ const Input = <T extends FieldValues>({
   return (
     <div
       className={cn(
-        "ring-offset-primary-50 focus-within:ring-primary-50 relative flex h-13 w-full items-center gap-1 rounded-2xl border border-[#737677] px-3 text-sm  placeholder:font-inter font-inter text-light-white outline-none",
+        "ring-offset-primary-50 focus-within:ring-primary-50 placeholder:font-inter font-inter text-light-white relative flex h-13 w-full items-center gap-1 rounded-2xl border border-[#737677] px-3 text-sm outline-none",
         className
       )}
     >
@@ -23,7 +23,7 @@ const Input = <T extends FieldValues>({
         {inputPrefix}
       </div>
       <input
-        className={`${inputPrefix && "ml-10"} "border-white text-light-white placeholder:text-light-white w-full bg-inherit ring-0 ring-offset-0 outline-none placeholder:text-sm ${props.readOnly && "text-search-gray"} `}
+        className={`${inputPrefix && "ml-10"} "border-white text-light-white w-full bg-inherit ring-0 ring-offset-0 outline-none placeholder:text-sm placeholder:text-[#898C96] ${props.readOnly && "text-search-gray"} `}
         {...props}
         {...(register && name ? register(name) : {})}
       />

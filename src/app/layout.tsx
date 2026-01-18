@@ -1,7 +1,8 @@
+import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, Montserrat } from "next/font/google";
-import "./globals.css";
+import { Inter, Montserrat, Space_Grotesk } from "next/font/google";
 import ReactQueryProvider from "../providers/ReactQueryProvider";
+import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -31,9 +32,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.className} ${inter.variable} ${montserrat.variable} h-screen w-full bg-default-blue antialiased text-light-white`}
+        className={`${spaceGrotesk.className} ${inter.variable} ${montserrat.variable} bg-default-blue text-light-white h-screen w-full antialiased`}
       >
         <ReactQueryProvider>{children}</ReactQueryProvider>
+        <Toaster />
       </body>
     </html>
   );
