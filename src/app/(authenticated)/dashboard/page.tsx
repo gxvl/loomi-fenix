@@ -16,7 +16,7 @@ export default function DashboardPage() {
 
   if (isLoading) {
     return (
-      <main className="h-screen w-full flex items-center justify-center">
+      <main className="flex h-screen w-full items-center justify-center">
         <LoadingComponent />
       </main>
     );
@@ -24,8 +24,8 @@ export default function DashboardPage() {
 
   if (isError) {
     return (
-      <main className="h-screen w-full flex items-center justify-center">
-        <div className="text-red-500 text-xl">
+      <main className="flex h-screen w-full items-center justify-center">
+        <div className="text-xl text-red-500">
           Erro ao carregar dashboard: {error?.message}
         </div>
       </main>
@@ -34,18 +34,18 @@ export default function DashboardPage() {
 
   if (!dashboardData) {
     return (
-      <main className="h-screen w-full flex items-center justify-center">
-        <div className="text-white text-xl">Nenhum dado disponível</div>
+      <main className="flex h-screen w-full items-center justify-center">
+        <div className="text-xl text-white">Nenhum dado disponível</div>
       </main>
     );
   }
 
   return (
-    <main className="h-screen w-full flex flex-col">
+    <main className="flex h-screen w-full flex-col">
       <TopTab title="Dashboard" />
       <Sidebar />
-      <div className="h-screen mt-20  py-16 px-42 ml-32 flex flex-col gap-5">
-        <div className="flex gap-10 justify-between">
+      <div className="mt-20 ml-32 flex h-screen flex-col gap-10 px-42 py-16">
+        <div className="flex justify-between gap-10">
           <KPICard kpisTrend={dashboardData.kpisTrend} />
           <ConversionCard kpisTrend={dashboardData.kpisTrend} />
         </div>

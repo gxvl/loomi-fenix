@@ -1,10 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import dynamic from "next/dynamic";
-import { ChevronRight } from "lucide-react";
 import { KpisTrend } from "@/src/common/entities/dashboard";
+import { ChevronRight } from "lucide-react";
+import dynamic from "next/dynamic";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false
@@ -66,7 +64,7 @@ export const ConversionCard = ({ kpisTrend }: { kpisTrend: KpisTrend }) => {
   ];
 
   return (
-    <div className="h-max px-6 pt-10 bg-card-blue flex flex-col gap-5 w-[40%] rounded-2xl">
+    <div className="h-max border-[0.5px] border-border-gray px-6 pt-8 bg-card-blue flex flex-col gap-5 w-[40%] rounded-2xl">
       <div className="flex items-center justify-between">
         <h4 className="font-montserrat font-bold text-xl">Taxa de conversão</h4>
         <ChevronRight size={26} color="white" className="cursor-pointer" />

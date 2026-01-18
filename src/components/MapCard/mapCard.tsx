@@ -7,9 +7,9 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-import MapView from "../MapView/mapView";
 import { useGetMapLocations } from "@/src/hooks/queries/useGetMapLocations";
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
+import MapView from "../MapView/mapView";
 
 // Dicionário de tradução de categorias
 const categoryLabels: { [key: string]: string } = {
@@ -25,14 +25,10 @@ const categoryLabels: { [key: string]: string } = {
   transport: "Transporte"
 };
 
-// Função para extrair apenas a cidade do endereço
 const extractCity = (address: string): string => {
-  // Padrão: "Rua X, bairro, Cidade - UF" -> extrair apenas "Cidade"
   const parts = address.split(",");
   if (parts.length >= 3) {
-    // Pega a última parte antes do " - UF"
     const lastPart = parts[parts.length - 1].trim();
-    // Remove o " - UF" se existir
     const cityWithState = lastPart.split("-")[0].trim();
     return cityWithState;
   }
@@ -53,7 +49,6 @@ export const MapCard = () => {
     return cities.sort();
   }, [mapData]);
 
-  // Extrair categorias únicas com tradução (category)
   const uniqueCategories = useMemo(() => {
     if (!mapData?.data.locations) return [];
     const categories = Array.from(
@@ -65,7 +60,6 @@ export const MapCard = () => {
     }));
   }, [mapData]);
 
-  // Filtrar locations baseado nos filtros selecionados
   const filteredLocations = useMemo(() => {
     if (!mapData?.data.locations) return [];
 
@@ -79,14 +73,13 @@ export const MapCard = () => {
     });
   }, [mapData, placeFilter, typeFilter]);
 
-  // CORREÇÃO: Calcular o label atual explicitamente baseado no estado
   const currentCategoryLabel =
     typeFilter === "all"
       ? "Todos os tipos"
       : categoryLabels[typeFilter] || typeFilter;
 
   return (
-    <div className="h-full px-6 py-10 bg-card-blue flex flex-col gap-5 w-full rounded-2xl">
+    <div className="h-full border-[0.5px] border-border-gray px-6 py-8 bg-card-blue flex flex-col gap-5 w-full rounded-2xl">
       <div className="flex justify-between">
         <h4 className="font-montserrat font-bold text-xl">
           Mapa de clientes por região

@@ -5,30 +5,49 @@ import prettierPlugin from "eslint-plugin-prettier";
 import { defineConfig } from "eslint/config";
 
 const eslintConfig = defineConfig([
-  // 1. Configurações padrão do Next.js
+  // 1. Configurações base do Next.js
   ...nextVitals,
   ...nextTs,
 
-  // 2. Configuração do Prettier (Isso fará o erro de linhas aparecer!)
+  // 2. Configuração recomendada do Tailwind (Flat Config)
+
+  // 3. Regras e Integração com Prettier
   {
     plugins: {
       prettier: prettierPlugin
     },
     rules: {
-      ...prettierConfig.rules, // Desativa regras do ESLint que conflitam com Prettier
-      "prettier/prettier": [
-        "error",
-        {
-          trailingComma: "none",
-          endOfLine: "auto"
-        }
-      ],
-      // Força erro se houver mais de 1 linha vazia (backup caso o prettier falhe)
-      "no-multiple-empty-lines": ["error", { max: 1 }]
+      // Desativa todas as regras de estilo do ESLint que conflitam com o Prettier
+      ...prettierConfig.rules,
+
+      // Regra principal: Roda o Prettier como se fosse um erro de Lint.
+      // { usePrettierrc: true } manda ele ler seu prettier.config.mjs ou .prettierrc
+      "prettier/prettier": ["error", {}, { usePrettierrc: true }],
+
+      // Garante erro em linhas vazias duplas (backup de segurança)
+      "no-multiple-empty-lines": ["error", { max: 1 }],
+
+      // --- Regras do Tailwind ---
+      // IMPORTANTE: Desligamos o aviso de ordem do ESLint.
+      // Quem vai ordenar é o plugin do Prettier quando você der Ctrl+S.
+      "tailwindcss/classnames-order": "off",
+
+      // Opcional: Permite classes que não existem no Tailwind (útil para libs externas)
+      "tailwindcss/no-custom-classname": "off"
     }
   },
 
-  // 3. Ignorar pastas
+  // 4. Configurações para o Plugin do Tailwind entender seu código
+  {
+    settings: {
+      tailwindcss: {
+        callees: ["cn", "cva", "clsx"], // Funções onde classes são usadas
+        config: "tailwind.config.ts" // Certifique-se que o nome do arquivo está certo
+      }
+    }
+  },
+
+  // 5. Arquivos ignorados
   {
     ignores: [
       ".next/**",

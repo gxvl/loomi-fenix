@@ -1,9 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import dynamic from "next/dynamic";
 import { KpisTrend } from "@/src/common/entities/dashboard";
+import dynamic from "next/dynamic";
+import { useState } from "react";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false
@@ -77,18 +77,18 @@ export const KPICard = ({ kpisTrend }: { kpisTrend: KpisTrend }) => {
     : [];
 
   return (
-    <div className=" px-6 h-max pt-10 bg-card-blue flex flex-col gap-5 w-[60%] rounded-2xl">
-      <div className="flex justify-between">
-        <h4 className="font-montserrat font-bold text-xl">
+    <div className="border-border-gray bg-card-blue flex h-full w-[60%] flex-col gap-5 rounded-2xl border-[0.5px] px-6 pt-4">
+      <div className="flex items-center justify-between">
+        <h4 className="font-montserrat text-xl font-bold">
           Evolução dos KPI&apos;s
         </h4>
-        <div className="bg-[#24293B] rounded-full p-3 flex gap-3 relative">
+        <div className="relative flex gap-3 rounded-full bg-[#24293B] p-3">
           {kpis.map((kpi) => (
             <Button
               key={kpi.id}
               onClick={() => setSelectedKPI(kpi.id)}
               variant={selectedKPI === kpi.id ? "glowingcard" : "buttongray"}
-              className="font-montserrat px-3 rounded-full transition-all duration-300 ease-in-out hover:scale-105"
+              className="font-montserrat rounded-full px-3 transition-all duration-300 ease-in-out hover:scale-105"
             >
               {kpi.label}
             </Button>
@@ -96,7 +96,7 @@ export const KPICard = ({ kpisTrend }: { kpisTrend: KpisTrend }) => {
         </div>
       </div>
 
-      <div className="w-full ">
+      <div className="w-full">
         <ReactApexChart
           options={chartOptions}
           series={series}
