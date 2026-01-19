@@ -3,7 +3,7 @@ import React from "react";
 interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
-export const Checkbox = ({
+export const SimulatorCheckbox = ({
   label,
   className = "",
   ...props
@@ -33,7 +33,7 @@ export const Checkbox = ({
         </svg>
       </div>
 
-      <span className="text-light-white text-base font-medium transition-colors group-hover:text-white">
+      <span className="text-light-white font-inter text-sm transition-colors group-hover:text-white">
         {label}
       </span>
     </label>

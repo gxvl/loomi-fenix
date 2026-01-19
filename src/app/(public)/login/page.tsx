@@ -3,8 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/src/components/Checkbox/checkbox";
 import InputField from "@/src/components/InputField/inputField";
-import { loginFormSchema, loginForm } from "@/src/validations/login";
 import { login } from "@/src/services/auth";
+import { loginForm, loginFormSchema } from "@/src/validations/login";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeClosed, Headset } from "lucide-react";
 import Image from "next/image";
@@ -50,13 +50,13 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex py-20 gap-10 items-center px-10 h-screen justify-between">
-      <div className="flex h-full flex-col gap-40 w-full justify-start">
-        <h1 className="text-5xl text-accent-blue font-extrabold">Nortus</h1>
+    <main className="flex h-screen items-center justify-between gap-10 px-10 py-20">
+      <div className="flex h-full w-full flex-col justify-start gap-40">
+        <h1 className="text-accent-blue text-5xl font-extrabold">Nortus</h1>
         <div className="flex flex-col gap-20">
           <div className="flex flex-col gap-2">
             <h4 className="text-3xl">Login</h4>
-            <p className="text-lg font-inter">
+            <p className="font-inter text-lg">
               Entre com suas credenciais para acessar a sua conta.
             </p>
           </div>
@@ -99,19 +99,19 @@ export default function LoginPage() {
               <Checkbox label="Lembrar meu usuário" />
               <Link
                 href="#"
-                className="text-accent-blue hover:text-white transition-colors"
+                className="text-accent-blue transition-colors hover:text-white"
               >
                 Esqueci minha senha
               </Link>
             </div>
-            {loginError && <p className="text-red-500 text-sm">{loginError}</p>}
+            {loginError && <p className="text-sm text-red-500">{loginError}</p>}
             <Button type="submit" disabled={isLoading || !isValid}>
               {isLoading ? "Entrando..." : "Entrar"}
             </Button>
           </form>
         </div>
       </div>
-      <div className="relative w-full h-full">
+      <div className="relative h-full w-full">
         <Image
           fill
           src={"login2.svg"}
@@ -120,7 +120,7 @@ export default function LoginPage() {
         />
         <Button
           variant={"secondary"}
-          className="absolute w-40 top-[5%] right-[5%] flex items-center gap-2 px-4 py-2 cursor-pointer z-10"
+          className="absolute top-[5%] right-[5%] z-10 flex w-40 cursor-pointer items-center gap-2 px-4 py-2"
         >
           <Headset size={20} />
           Ajuda
