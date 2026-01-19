@@ -30,40 +30,68 @@ export const KPICard = ({ kpisTrend }: { kpisTrend: KpisTrend }) => {
         show: false
       }
     },
+    colors: ["#4DD3CC"],
+    fill: {
+      type: "gradient",
+      gradient: {
+        shade: "dark",
+        type: "vertical",
+        shadeIntensity: 0.5,
+        gradientToColors: ["rgba(77, 211, 204, 0.1)"],
+        inverseColors: false,
+        opacityFrom: 1,
+        opacityTo: 0.3,
+        stops: [0, 100]
+      }
+    },
     dataLabels: {
       enabled: false
     },
     stroke: {
       curve: "smooth",
-      width: 1
+      width: 2,
+      colors: ["#4DD3CC"]
     },
     xaxis: {
       type: "category",
       categories: kpisTrend.labels,
       labels: {
         style: {
-          colors: "#fff"
+          colors: "#fff",
+          fontFamily: "Montserrat, sans-serif"
         }
       }
     },
     yaxis: {
       labels: {
         style: {
-          colors: "#fff"
+          colors: "#fff",
+          fontFamily: "Montserrat, sans-serif"
         }
       }
     },
     tooltip: {
-      theme: "dark"
+      theme: "dark",
+      custom: function ({
+        series,
+        seriesIndex,
+        dataPointIndex
+      }: {
+        series: number[][];
+        seriesIndex: number;
+        dataPointIndex: number;
+      }) {
+        const value = series[seriesIndex][dataPointIndex];
+        const formattedValue =
+          value >= 1000 ? `R$ ${(value / 1000).toFixed(0)}K` : `R$ ${value}`;
+        return `<div style="padding: 8px 12px; background: #1A1F2E; border-radius: 8px; font-family: Montserrat, sans-serif; font-size: 14px; color: #fff;">
+          ${formattedValue}
+        </div>`;
+      }
     },
     grid: {
       borderColor: "#2D3447",
       strokeDashArray: 0
-    },
-    legend: {
-      labels: {
-        colors: "#fff"
-      }
     }
   };
 
@@ -77,12 +105,12 @@ export const KPICard = ({ kpisTrend }: { kpisTrend: KpisTrend }) => {
     : [];
 
   return (
-    <div className="border-border-gray bg-card-blue flex h-full w-[60%] flex-col gap-5 rounded-2xl border-[0.5px] px-6 pt-4">
-      <div className="flex items-center justify-between">
+    <div className="border-border-gray bg-card-blue flex h-full w-full flex-col gap-5 rounded-2xl border-[0.5px] px-6 pt-4 xl:w-[60%]">
+      <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <h4 className="font-montserrat text-xl font-bold">
           Evolução dos KPI&apos;s
         </h4>
-        <div className="relative flex gap-3 rounded-full bg-[#24293B] p-3">
+        <div className="flex gap-3 rounded-full bg-[#24293B] p-3">
           {kpis.map((kpi) => (
             <Button
               key={kpi.id}
@@ -90,7 +118,7 @@ export const KPICard = ({ kpisTrend }: { kpisTrend: KpisTrend }) => {
               variant={selectedKPI === kpi.id ? "glowingcard" : "buttongray"}
               className="font-montserrat rounded-full px-3 transition-all duration-300 ease-in-out hover:scale-105"
             >
-              {kpi.label}
+              <p className="text-xs font-semibold">{kpi.label}</p>
             </Button>
           ))}
         </div>

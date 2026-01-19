@@ -106,11 +106,11 @@ export default function DashboardPage() {
             setIsOpen={setIsCreateModalOpen}
             trigger={
               <Button
-                className="mr-10 flex w-40 items-center rounded-full"
+                className="mr-10 flex w-max items-center rounded-full px-10"
                 variant={"glowingdefault"}
               >
                 <Plus className="mr-1" />
-                Novo Ticket
+                <p className="text-base">Novo Ticket</p>
               </Button>
             }
           />

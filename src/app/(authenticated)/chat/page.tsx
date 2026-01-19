@@ -156,10 +156,10 @@ export default function ChatPage() {
 
                   {message.id === "msg_004" && (
                     <div className={`flex justify-end`}>
-                      <div className="flex max-w-[60%] gap-4">
+                      <div className="flex max-w-[80%] gap-2 xl:max-w-[60%] xl:gap-4">
                         <Button
                           variant="glowingdefault"
-                          className="flex-1 rounded-full bg-[#2776D2] px-8 py-4 text-sm text-white hover:bg-[#1e5fb0] disabled:opacity-50"
+                          className="flex-1 rounded-full bg-[#2776D2] px-4 py-2 text-xs text-white hover:bg-[#1e5fb0] disabled:opacity-50 xl:px-8 xl:py-4 xl:text-sm"
                           onClick={sendProposal}
                           disabled={isLoadingGemini}
                         >
@@ -167,7 +167,7 @@ export default function ChatPage() {
                         </Button>
                         <Button
                           variant="glowingdefault"
-                          className="flex-1 rounded-full bg-[#2776D2] px-8 py-4 text-sm text-white hover:bg-[#1e5fb0] disabled:opacity-50"
+                          className="flex-1 rounded-full bg-[#2776D2] px-4 py-2 text-xs text-white hover:bg-[#1e5fb0] disabled:opacity-50 xl:px-8 xl:py-4 xl:text-sm"
                           onClick={makeCall}
                           disabled={isLoadingGemini}
                         >
@@ -175,7 +175,7 @@ export default function ChatPage() {
                         </Button>
                         <Button
                           variant="glowingdefault"
-                          className="flex-1 rounded-full bg-[#2776D2] px-8 py-4 text-sm text-white hover:bg-[#1e5fb0] disabled:opacity-50"
+                          className="flex-1 rounded-full bg-[#2776D2] px-4 py-2 text-xs text-white hover:bg-[#1e5fb0] disabled:opacity-50 xl:px-8 xl:py-4 xl:text-sm"
                           onClick={viewHistory}
                           disabled={isLoadingGemini}
                         >

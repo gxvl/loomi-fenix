@@ -93,15 +93,15 @@ export default function SimulatorPage() {
   }
 
   return (
-    <main className="flex h-screen w-full flex-col">
+    <main className="flex min-h-screen w-full flex-col">
       <TopTab title="Simulador de Planos" />
       <Sidebar />
-      <div className="mt-20 ml-32 flex h-screen gap-12 px-36 pt-16">
-        <div className="bg-card-blue border-border-gray flex h-max w-[65%] flex-col gap-6 rounded-2xl border p-6">
+      <div className="mt-20 ml-32 flex min-h-screen flex-col gap-12 px-36 pt-16 pb-20 xl:flex-row">
+        <div className="bg-card-blue border-border-gray flex h-max w-full flex-col gap-6 rounded-2xl border p-6 xl:w-[65%]">
           <h1 className="font-montserrat text-xl font-bold text-white">
             Planos personalizados
           </h1>
-          <div className="flex gap-4">
+          <div className="flex flex-col gap-4 lg:flex-row">
             {data.plansIndicators.map((plan, index) => (
               <PlanCard
                 key={plan.name}
@@ -116,7 +116,7 @@ export default function SimulatorPage() {
           <SimulatorInputs onValuesChange={handleValuesChange} />
           <AdditionalCoverages onCoveragesChange={handleCoveragesChange} />
         </div>
-        <div className="flex h-max w-[40%] flex-col gap-10">
+        <div className="flex h-max w-full flex-col gap-10 xl:w-[40%]">
           {selectedPlan && (
             <PriceSummary
               basePrice={basePrice}

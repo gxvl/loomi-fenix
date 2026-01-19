@@ -6,7 +6,7 @@ import InputField from "@/src/components/InputField/inputField";
 import { login } from "@/src/services/auth";
 import { loginForm, loginFormSchema } from "@/src/validations/login";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeClosed, Headset } from "lucide-react";
+import { Eye, EyeClosed } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -128,13 +128,6 @@ export default function LoginPage() {
           alt="Imagem de login"
           className="absolute"
         />
-        <Button
-          variant={"secondary"}
-          className="absolute top-[5%] right-[5%] z-10 flex w-40 cursor-pointer items-center gap-2 px-4 py-2"
-        >
-          <Headset size={20} />
-          Ajuda
-        </Button>
       </div>
     </main>
   );

@@ -43,7 +43,7 @@ export default function DashboardPage() {
       <TopTab title="Dashboard" />
       <Sidebar />
       <div className="mt-20 ml-32 flex min-h-screen flex-col gap-10 px-42 py-16">
-        <div className="flex justify-between gap-10">
+        <div className="flex flex-col justify-between gap-10 xl:flex-row">
           <KPICard kpisTrend={dashboardData.kpisTrend} />
           <ConversionCard kpisTrend={dashboardData.kpisTrend} />
         </div>

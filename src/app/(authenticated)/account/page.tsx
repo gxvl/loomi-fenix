@@ -29,7 +29,6 @@ export default function AccountPage() {
       document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     });
 
-    // Redireciona para login
     router.push("/login");
   };
 
@@ -93,7 +92,7 @@ export default function AccountPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
             <div className="bg-card-blue border-border-gray flex flex-col gap-3 rounded-2xl border p-6">
               <span className="text-sm text-gray-400">Vendas Totais</span>
               <span className="font-montserrat text-3xl font-bold text-white">

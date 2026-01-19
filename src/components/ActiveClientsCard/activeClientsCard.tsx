@@ -52,7 +52,7 @@ export const ActiveClientsCard = ({
       <h4 className="font-montserrat text-xl font-bold">Clientes ativos</h4>
 
       {/* Filtros */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col items-stretch gap-3 xl:flex-row xl:items-center">
         {/* Busca */}
         <div className="relative flex-1">
           <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
@@ -67,7 +67,7 @@ export const ActiveClientsCard = ({
 
         {/* Filtro Status */}
         <Select value={statusFilter} onValueChange={setStatusFilter}>
-          <SelectTrigger className="bg-default-blue font-inter w-45 rounded-full border-none">
+          <SelectTrigger className="bg-default-blue font-inter w-full rounded-full border-none xl:w-45">
             <SelectValue />
           </SelectTrigger>
           <SelectContent className="font-inter bg-default-blue text-white ease-in">
@@ -82,7 +82,7 @@ export const ActiveClientsCard = ({
 
         {/* Filtro Tipo */}
         <Select value={typeFilter} onValueChange={setTypeFilter}>
-          <SelectTrigger className="bg-default-blue font-inter w-45 rounded-full border-none">
+          <SelectTrigger className="bg-default-blue font-inter w-full rounded-full border-none xl:w-45">
             <SelectValue />
           </SelectTrigger>
           <SelectContent className="font-inter bg-default-blue text-white ease-in">
@@ -97,7 +97,7 @@ export const ActiveClientsCard = ({
 
         {/* Filtro Locais */}
         <Select value={locationFilter} onValueChange={setLocationFilter}>
-          <SelectTrigger className="bg-default-blue font-inter w-45 rounded-full border-none">
+          <SelectTrigger className="bg-default-blue font-inter w-full rounded-full border-none xl:w-45">
             <SelectValue />
           </SelectTrigger>
           <SelectContent className="font-inter bg-default-blue text-white ease-in">
