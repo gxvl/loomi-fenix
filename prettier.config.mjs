@@ -7,7 +7,7 @@ const config = {
   tabWidth: 2,
   trailingComma: "none",
   printWidth: 80,
-  plugins: [tailwindPlugin],
+  plugins: [tailwindPlugin]
 };
 
 export default config;

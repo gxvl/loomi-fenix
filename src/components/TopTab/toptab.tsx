@@ -6,8 +6,8 @@ export const TopTab = ({
   button?: React.ReactNode;
 }) => {
   return (
-    <div className="w-full z-50 items-center pl-40 fixed top-0 flex justify-between h-[8%] bg-grayblue">
-      <p className="font-montserrat font-semibold text-xl">{title}</p>
+    <div className="bg-grayblue fixed top-0 z-50 flex h-[8%] w-full items-center justify-between pl-40">
+      <p className="font-montserrat text-xl font-semibold">{title}</p>
       {button && button}
     </div>
   );

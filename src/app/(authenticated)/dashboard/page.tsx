@@ -8,11 +8,9 @@ import { MapCard } from "@/src/components/MapCard/mapCard";
 import { Sidebar } from "@/src/components/Sidebar/sidebar";
 import { TopTab } from "@/src/components/TopTab/toptab";
 import { useGetDashboard } from "@/src/hooks/queries/useGetDashboard";
-import { useGetMapLocations } from "@/src/hooks/queries/useGetMapLocations";
 
 export default function DashboardPage() {
   const { data: dashboardData, isLoading, isError, error } = useGetDashboard();
-  const { data: mapData } = useGetMapLocations();
 
   if (isLoading) {
     return (

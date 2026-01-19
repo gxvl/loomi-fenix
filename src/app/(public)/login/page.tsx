@@ -37,10 +37,20 @@ export default function LoginPage() {
       const response = await login(data);
 
       if (response.status === 201 && response.data.access_token) {
+        document.cookie = `authToken=${response.data.access_token}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Strict`;
+
+        const userInfo = {
+          email: data.email,
+          name: "Geraldo Loomi",
+          role: "Consultor de Seguros",
+          loginTime: new Date().toISOString()
+        };
+        localStorage.setItem("user", JSON.stringify(userInfo));
         localStorage.setItem("authToken", response.data.access_token);
 
         router.push("/dashboard");
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Erro ao fazer login:", error);
       setLoginError("Erro ao fazer login. Tente novamente.");

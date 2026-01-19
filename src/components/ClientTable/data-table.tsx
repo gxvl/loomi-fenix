@@ -45,8 +45,8 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="w-full bg-table-gray rounded-2xl border-none">
-      <div className="rounded-2xl p-4 border border-none overflow-hidden">
+    <div className="bg-table-gray w-full rounded-2xl border-none">
+      <div className="overflow-hidden rounded-2xl border border-none p-4">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -58,7 +58,7 @@ export function DataTable<TData, TValue>({
                   return (
                     <TableHead
                       key={header.id}
-                      className="text-gray-400 font-montserrat"
+                      className="font-montserrat text-gray-400"
                     >
                       {header.isPlaceholder
                         ? null

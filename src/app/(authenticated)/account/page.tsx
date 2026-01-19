@@ -2,8 +2,11 @@
 
 import { Sidebar } from "@/src/components/Sidebar/sidebar";
 import { TopTab } from "@/src/components/TopTab/toptab";
+import { useRouter } from "next/navigation";
 
 export default function AccountPage() {
+  const router = useRouter();
+
   const userData = {
     name: "Geraldo Loomi",
     email: "geraldo.loomi@fenixseguros.com.br",
@@ -14,6 +17,20 @@ export default function AccountPage() {
     totalSales: "R$ 125.000,00",
     activePolicies: 47,
     clientsSatisfaction: "98%"
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+
+    sessionStorage.clear();
+
+    document.cookie.split(";").forEach((cookie) => {
+      const name = cookie.split("=")[0].trim();
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    });
+
+    // Redireciona para login
+    router.push("/login");
   };
 
   return (
@@ -142,7 +159,10 @@ export default function AccountPage() {
               </div>
             </div>
 
-            <button className="font-montserrat mt-4 w-fit rounded-lg border border-red-500 bg-transparent px-6 py-3 text-base font-bold text-red-500 transition-all hover:bg-red-500 hover:text-white">
+            <button
+              onClick={handleLogout}
+              className="font-montserrat mt-4 w-fit rounded-lg border border-red-500 bg-transparent px-6 py-3 text-base font-bold text-red-500 transition-all hover:bg-red-500 hover:text-white"
+            >
               Sair da Conta
             </button>
           </div>
