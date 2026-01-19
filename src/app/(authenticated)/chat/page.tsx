@@ -7,11 +7,10 @@ import { TopTab } from "@/src/components/TopTab/toptab";
 import { useGetChat } from "@/src/hooks/queries/useGetChat";
 import { useGeminiChat } from "@/src/hooks/useGeminiChat";
 import { Check, Send } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 export default function ChatPage() {
   const { data, isLoading: isLoadingInitial, isError, error } = useGetChat();
-  const initialMessages = data?.messages || [];
 
   const {
     messages: geminiMessages,
@@ -24,12 +23,20 @@ export default function ChatPage() {
   } = useGeminiChat();
 
   const [inputMessage, setInputMessage] = useState("");
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const allMessages = useMemo(
+    () => [...(data?.messages || []), ...geminiMessages],
+    [data?.messages, geminiMessages]
+  );
 
   useEffect(() => {
     initializeChat();
   }, [initializeChat]);
 
-  const allMessages = [...initialMessages, ...geminiMessages];
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [allMessages, isLoadingGemini]);
 
   console.log(allMessages);
 
@@ -187,21 +194,26 @@ export default function ChatPage() {
                 </div>
               ))}
 
-              {/* Loading indicator */}
               {isLoadingGemini && (
                 <div className="flex justify-end">
                   <div className="max-w-[60%] rounded-2xl bg-[#3D4457] px-5 py-4 text-white">
                     <div className="mb-2 text-xs font-semibold">
                       Sugestão da IA
                     </div>
-                    <div className="text-sm">Digitando...</div>
+                    <div className="flex items-center gap-1">
+                      <div className="flex gap-1">
+                        <span className="h-2 w-2 animate-bounce rounded-full bg-white [animation-delay:-0.3s]"></span>
+                        <span className="h-2 w-2 animate-bounce rounded-full bg-white [animation-delay:-0.15s]"></span>
+                        <span className="h-2 w-2 animate-bounce rounded-full bg-white"></span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
+              <div ref={messagesEndRef} />
             </div>
           </div>
 
-          {/* Input Area */}
           <div className="mt-4 w-[60%] place-self-center">
             <div className="bg-card-blue relative flex items-center rounded-full border border-[#91949D] px-6 py-4">
               <input
