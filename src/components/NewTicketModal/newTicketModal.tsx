@@ -50,6 +50,7 @@ export const NewTicketModal = ({
 
   const onSubmit = (data: ticketForm) => {
     // Gera um ticketId único baseado no timestamp
+    // eslint-disable-next-line react-hooks/purity
     const ticketId = `TK${Date.now().toString().slice(-6)}`;
 
     createTicket(
@@ -68,6 +69,7 @@ export const NewTicketModal = ({
           reset();
           setIsOpen(false);
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onError: (error: any) => {
           toast.error(error?.response?.data?.message || "Erro ao criar ticket");
         }

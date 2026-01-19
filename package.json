@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@google/genai": "^1.37.0",
+    "@google/generative-ai": "^0.24.1",
     "@hookform/resolvers": "^5.2.2",
     "@mona-health/react-input-mask": "mona-health/react-input-mask",
     "@radix-ui/react-dialog": "^1.1.15",
@@ -30,6 +32,7 @@
     "react-dom": "19.2.3",
     "react-hook-form": "^7.71.1",
     "react-input-mask": "^3.0.0-alpha.2",
+    "react-markdown": "^10.1.0",
     "react-native-mask-input": "^1.2.3",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
