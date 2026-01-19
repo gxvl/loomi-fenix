@@ -6,7 +6,7 @@ Uma plataforma completa desenvolvida para consultores de seguros gerenciarem cli
 
 O projeto foi construído com Next.js 14 usando App Router e TypeScript. Para gerenciamento de estado assíncrono, utilizei TanStack Query v5 que facilita bastante o cache e sincronização com a API. Os formulários são validados com React Hook Form + Zod, e a estilização é toda feita com Tailwind CSS junto com alguns componentes do Shadcn/ui.
 
-A parte mais interessante tecnicamente é a integração com o Google Gemini AI SDK - não é um mock, é a API real rodando. Criei um hook customizado que gerencia todo o contexto da conversa e permite que a IA realmente entenda o histórico completo do chat.
+A parte mais interessante tecnicamente é a integração com o Google Gemini AI SDK: não é um mock, é a API real rodando. Criei um hook customizado que gerencia todo o contexto da conversa e permite que a IA realmente entenda o histórico completo do chat.
 
 Para visualização de dados, usei ApexCharts que se comporta muito bem com React e permite customizações bem detalhadas nos gráficos.
 
